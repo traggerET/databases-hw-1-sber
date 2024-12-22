@@ -1,4 +1,7 @@
-субд постгрес 
+# Задание 1
+Уровни изоляции: Почитать про уровни изоляции и повторить
+
+У postgres нет read uncommited, поэтому начнем сразу с read commited
 
 ### Read Commited
 
@@ -12,6 +15,9 @@ SELECT * FROM accounts WHERE name = 'Tyler Durden'; // Prints 10
 SELECT * FROM accounts WHERE name = 'Tyler Durden'; // Prints 11 
 COMMIT;
 ```
+В данном эксперименте мы увидели феномен под названием фантомное чтение
+
+Следующий уровень изоляции, более сильный, -- repeatable read
 
 ### Repeatable Read
 
@@ -26,6 +32,8 @@ SELECT * FROM accounts WHERE name = 'Tyler Durden'; // Prints 10
 COMMIT;
 SELECT * FROM accounts WHERE name = 'Tyler Durden'; // Prints 11
 ```
+
+Теперь перейдем к serializable read и посмотрим, что будет при запуске двух транзакций одновеменно
 
 ### Serializable Read
 
